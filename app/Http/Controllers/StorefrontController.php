@@ -14,6 +14,7 @@ class StorefrontController extends Controller
         return Inertia::render('Storefront', [
             'demoCheckout' => config('services.demo_checkout'),
             'demoPdfUrl' => route('demo.pdf'),
+            'logoUrl' => asset('images/logo_db.png'),
             'products' => Product::query()
                 ->where('is_active', true)
                 ->orderBy('price_cents')
