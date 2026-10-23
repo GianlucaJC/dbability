@@ -32,9 +32,9 @@ const visualFor = (slug) => ({
     },
     'routine-autonomia-quotidiana': {
         art: 'autonomia',
-        card: 'border-emerald-100 bg-emerald-50',
-        accent: 'text-emerald-700',
-        button: 'bg-emerald-600 hover:bg-emerald-700',
+        card: 'border-[#D8E1C5] bg-[#F3F7EB]',
+        accent: 'text-[#778363]',
+        button: 'bg-[#778363] hover:bg-[#63704F]',
     },
 }[slug] ?? {
     art: 'autonomia',
@@ -89,7 +89,7 @@ function closeDemo() {
     <main class="min-h-screen overflow-hidden bg-[#fffaf5] text-slate-800">
         <header class="border-b border-orange-100 bg-white/90">
             <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-                <Link :href="route('home')" class="flex items-center gap-2 text-2xl font-bold tracking-tight text-teal-800">
+                <Link :href="route('home')" class="flex items-center gap-2 text-2xl font-bold tracking-tight text-[#778363]">
                     <BrandMark class="h-10 w-10" />
                     DbAbility
                 </Link>
@@ -108,7 +108,7 @@ function closeDemo() {
             <div class="absolute right-0 top-0 h-56 w-56 rounded-full bg-cyan-100/70 blur-2xl"></div>
             <div class="grid items-center gap-12 md:grid-cols-2">
                 <div class="relative">
-                    <p class="mb-4 inline-flex rounded-full bg-teal-100 px-4 py-2 text-sm font-bold uppercase tracking-[0.14em] text-teal-700">Daniela Belli Abilità</p>
+                    <p class="mb-4 inline-flex rounded-full bg-[#E7EDDD] px-4 py-2 text-sm font-bold uppercase tracking-[0.14em] text-[#778363]">Daniela Belli Abilità</p>
                     <h1 class="text-4xl font-bold leading-tight text-teal-950 md:text-6xl">Imparare giocando,<br/><span class="text-orange-500">un tratto alla volta.</span></h1>
                     <p class="mt-6 max-w-xl text-lg leading-8 text-slate-600">Risorse digitali per genitori e bambini: attività colorate, semplici e rispettose dei tempi di ciascuno.</p>
                     <a href="#risorse" class="mt-8 inline-flex items-center gap-2 rounded-full bg-orange-500 px-6 py-3 font-semibold text-white shadow-lg shadow-orange-200 hover:bg-orange-600">Scopri le attività <span aria-hidden="true">→</span></a>
@@ -155,7 +155,7 @@ function closeDemo() {
             </div>
         </section>
 
-        <section class="bg-gradient-to-r from-teal-700 via-cyan-700 to-blue-700 py-14 text-white">
+        <section class="bg-gradient-to-r from-[#778363] via-teal-700 to-cyan-700 py-14 text-white">
             <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 text-center md:flex-row md:text-left">
                 <div>
                     <p class="text-sm font-bold uppercase tracking-[0.16em] text-cyan-200">Risorse digitali</p>
