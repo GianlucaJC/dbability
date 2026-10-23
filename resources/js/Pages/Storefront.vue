@@ -133,7 +133,9 @@ function closeDemo() {
                         <p class="mt-2 text-sm text-stone-600">Questa è una simulazione: nessun pagamento verrà richiesto e non verrà creato alcun ordine.</p>
                     </div>
                     <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-                        <a :href="demoPdfUrl" target="_blank" rel="noopener" class="rounded-full border border-teal-700 px-5 py-3 text-center font-semibold text-teal-800 hover:bg-teal-50">Apri PDF di prova</a>
+                        <a :href="selectedProduct.demo_download_url ?? demoPdfUrl" target="_blank" rel="noopener" class="rounded-full border border-teal-700 px-5 py-3 text-center font-semibold text-teal-800 hover:bg-teal-50">
+                            {{ selectedProduct.demo_download_url ? 'Apri questa risorsa' : 'Apri PDF di prova' }}
+                        </a>
                         <button type="button" class="rounded-full bg-teal-700 px-5 py-3 font-semibold text-white hover:bg-teal-800" @click="simulatePayment">Simula pagamento</button>
                     </div>
                 </template>

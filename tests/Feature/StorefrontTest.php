@@ -32,6 +32,27 @@ class StorefrontTest extends TestCase
                 ->where('demoCheckout', false));
     }
 
+    public function test_storefront_exposes_available_product_files_in_demo_mode(): void
+    {
+        config()->set('services.demo_checkout', true);
+        Storage::fake('local');
+        Storage::disk('local')->put('pdfs/risorsa-di-prova.pdf', 'Contenuto del PDF di test.');
+
+        Product::create([
+            'title' => 'Risorsa di prova',
+            'slug' => 'risorsa-di-prova',
+            'description' => 'Descrizione della risorsa.',
+            'price_cents' => 3500,
+            'file_path' => 'pdfs/risorsa-di-prova.pdf',
+        ]);
+
+        $response = $this->get('/');
+
+        $response->assertOk()
+            ->assertInertia(fn ($page) => $page
+                ->where('products.0.demo_download_url', route('demo.download', 'risorsa-di-prova')));
+    }
+
     public function test_demo_pdf_is_available_without_authentication(): void
     {
         $response = $this->get(route('demo.pdf'));

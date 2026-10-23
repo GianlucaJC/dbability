@@ -17,7 +17,7 @@ class StorefrontController extends Controller
             'products' => Product::query()
                 ->where('is_active', true)
                 ->orderBy('price_cents')
-                ->get(['id', 'title', 'slug', 'description', 'price_cents'])
+                ->get(['id', 'title', 'slug', 'description', 'price_cents', 'file_path'])
                 ->map(fn (Product $product) => [
                     'id' => $product->id,
                     'title' => $product->title,
