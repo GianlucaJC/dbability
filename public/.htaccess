@@ -5,6 +5,9 @@
 
     RewriteEngine On
 
+    # Route the physical public directory through Laravel instead of DirectoryIndex.
+    RewriteRule ^$ index.php [END]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
