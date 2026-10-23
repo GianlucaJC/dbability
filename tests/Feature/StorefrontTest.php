@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class StorefrontTest extends TestCase
@@ -37,5 +38,24 @@ class StorefrontTest extends TestCase
 
         $response->assertOk()
             ->assertHeader('content-type', 'application/pdf');
+    }
+
+    public function test_demo_checkout_can_download_a_product_file_without_authentication(): void
+    {
+        config()->set('services.demo_checkout', true);
+        Storage::fake('local');
+        Storage::disk('local')->put('pdfs/risorsa-di-prova.pdf', 'Contenuto del PDF di test.');
+
+        $product = Product::create([
+            'title' => 'Risorsa di prova',
+            'slug' => 'risorsa-di-prova',
+            'description' => 'Descrizione della risorsa.',
+            'price_cents' => 3500,
+            'file_path' => 'pdfs/risorsa-di-prova.pdf',
+        ]);
+
+        $response = $this->get(route('demo.download', $product));
+
+        $response->assertDownload('risorsa-di-prova.pdf');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\DemoDownloadController;
 use App\Http\Controllers\DemoPdfController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\MyResourcesController;
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [StorefrontController::class, 'index'])->name('home');
 Route::get('/pdf-di-prova', [DemoPdfController::class, 'show'])->name('demo.pdf');
+Route::get('/demo-download/{product:slug}', [DemoDownloadController::class, 'show'])->name('demo.download');
 Route::post('/stripe/webhook', [StripeWebhookController::class, 'handle'])
     ->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class)
     ->name('stripe.webhook');

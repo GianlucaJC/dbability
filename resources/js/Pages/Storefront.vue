@@ -149,7 +149,9 @@ function closeDemo() {
                     <h2 class="mt-5 text-2xl font-bold text-teal-950">Pagamento simulato con successo</h2>
                     <p class="mt-3 leading-7 text-stone-600">In modalità reale, il PDF acquistato sarebbe ora disponibile nell’area personale.</p>
                     <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
-                        <a :href="demoPdfUrl" target="_blank" rel="noopener" class="rounded-full bg-teal-700 px-5 py-3 font-semibold text-white hover:bg-teal-800">Scarica il PDF di prova</a>
+                        <a :href="selectedProduct.demo_download_url ?? demoPdfUrl" target="_blank" rel="noopener" class="rounded-full bg-teal-700 px-5 py-3 font-semibold text-white hover:bg-teal-800">
+                            {{ selectedProduct.demo_download_url ? 'Scarica questa risorsa' : 'Scarica il PDF di prova' }}
+                        </a>
                         <button type="button" class="rounded-full border border-stone-300 px-5 py-3 font-semibold text-stone-700 hover:bg-stone-50" @click="closeDemo">Chiudi</button>
                     </div>
                 </div>

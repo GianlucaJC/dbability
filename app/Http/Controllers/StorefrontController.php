@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -23,6 +24,11 @@ class StorefrontController extends Controller
                     'slug' => $product->slug,
                     'description' => $product->description,
                     'price' => $product->price,
+                    'demo_download_url' => config('services.demo_checkout')
+                        && filled($product->file_path)
+                        && Storage::disk('local')->exists($product->file_path)
+                            ? route('demo.download', $product)
+                            : null,
                 ]),
         ]);
     }
