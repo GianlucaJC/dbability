@@ -105,15 +105,16 @@ function closeDemo() {
             </div>
         </header>
 
-        <section class="relative mx-auto max-w-6xl px-6 pb-20 pt-16">
-            <div class="absolute -left-20 top-16 h-44 w-44 rounded-full bg-[#CAE8CA]/70 blur-2xl"></div>
-            <div class="absolute right-0 top-0 h-56 w-56 rounded-full bg-[#B4CB8D]/70 blur-2xl"></div>
+        <section class="relative overflow-hidden bg-gradient-to-br from-[#778363] via-[#7FAB74] to-[#CAE8CA]">
+            <div class="absolute -left-20 top-16 h-44 w-44 rounded-full bg-white/15 blur-2xl"></div>
+            <div class="absolute right-0 top-0 h-56 w-56 rounded-full bg-white/20 blur-2xl"></div>
+            <div class="relative mx-auto max-w-6xl px-6 pb-20 pt-16">
             <div class="grid items-center gap-12 md:grid-cols-2">
                 <div class="relative">
-                    <p class="mb-4 inline-flex rounded-full bg-[#E7EDDD] px-4 py-2 text-sm font-bold uppercase tracking-[0.14em] text-[#778363]">DBability</p>
-                    <h1 class="text-4xl font-bold leading-tight text-[#2A2A2A] md:text-6xl">Imparare giocando,<br/><span class="text-[#3A9ECB]">un tratto alla volta.</span></h1>
-                    <p class="mt-6 max-w-xl text-lg leading-8 text-[#737373]">Risorse digitali per genitori e bambini: attività colorate, semplici e rispettose dei tempi di ciascuno.</p>
-                    <a href="#risorse" class="mt-8 inline-flex items-center gap-2 rounded-full bg-[#3A9ECB] px-6 py-3 font-semibold text-white shadow-lg shadow-[#CAE8CA] hover:bg-[#3A9DCA]">Scopri le attività <span aria-hidden="true">→</span></a>
+                    <p class="mb-4 inline-flex rounded-full bg-white/20 px-4 py-2 text-sm font-bold uppercase tracking-[0.14em] text-white">DBability</p>
+                    <h1 class="text-4xl font-bold leading-tight text-white md:text-6xl">Imparare giocando,<br/><span class="text-[#CAE8CA]">un tratto alla volta.</span></h1>
+                    <p class="mt-6 max-w-xl text-lg leading-8 text-white/90">Risorse digitali per genitori e bambini: attività colorate, semplici e rispettose dei tempi di ciascuno.</p>
+                    <a href="#risorse" class="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-[#778363] shadow-lg shadow-[#63704F]/30 hover:bg-[#CAE8CA]">Scopri le attività <span aria-hidden="true">→</span></a>
                 </div>
                 <div class="relative">
                     <div class="absolute -right-5 -top-5 h-20 w-20 rounded-full bg-[#B4CB8D]"></div>
@@ -125,6 +126,7 @@ function closeDemo() {
                         <p class="mt-1 text-sm text-[#737373]">Gioco, cura e piccoli traguardi.</p>
                     </div>
                 </div>
+            </div>
             </div>
         </section>
 
