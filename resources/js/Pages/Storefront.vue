@@ -3,7 +3,6 @@ import { Link, router, usePage } from '@inertiajs/vue3';
 import axios from 'axios';
 import { ref } from 'vue';
 import ActivityArt from '@/Components/ActivityArt.vue';
-import BrandMark from '@/Components/BrandMark.vue';
 import DBabilityLogo from '@/Components/DBabilityLogo.vue';
 
 const props = defineProps({
@@ -89,15 +88,15 @@ function closeDemo() {
 <template>
     <main class="min-h-screen overflow-hidden bg-white text-[#2A2A2A]">
         <header class="fixed inset-x-0 top-0 z-50 border-b border-[#CAE8CA] bg-white/95 backdrop-blur">
-            <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-                <Link :href="route('home')" class="flex items-center gap-3">
-                    <DBabilityLogo class="block h-12 w-52 sm:h-14 sm:w-64" />
+            <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 sm:py-5">
+                <Link :href="route('home')" class="flex shrink-0">
+                    <DBabilityLogo class="block h-10 w-40 sm:h-14 sm:w-64" />
                 </Link>
-                <nav class="flex items-center gap-4 text-sm font-medium">
+                <nav class="flex shrink-0 items-center gap-2 text-xs font-medium sm:gap-4 sm:text-sm">
                     <Link v-if="$page.props.auth.user" :href="route('dashboard')" class="text-[#2A2A2A] hover:text-[#778363]">Area personale</Link>
                     <template v-else>
-                        <Link :href="route('login')" class="text-[#2A2A2A] hover:text-[#778363]">Accedi</Link>
-                        <Link :href="route('register')" class="rounded-full bg-[#3A9ECB] px-4 py-2 text-white shadow-sm hover:bg-[#3A9DCA]">Registrati</Link>
+                        <Link :href="route('login')" class="whitespace-nowrap text-[#2A2A2A] hover:text-[#778363]">Accedi</Link>
+                        <Link :href="route('register')" class="whitespace-nowrap rounded-full bg-[#3A9ECB] px-3 py-2 text-white shadow-sm hover:bg-[#3A9DCA] sm:px-4">Registrati</Link>
                     </template>
                 </nav>
             </div>
