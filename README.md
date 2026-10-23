@@ -49,6 +49,8 @@ Piattaforma digitale **Daniela Belli Abilità** per la vendita di risorse PDF de
 
 4. Durante lo sviluppo eseguire `npm.cmd run dev`. Con Herd configurare il sito sulla cartella del progetto; con XAMPP il VirtualHost deve puntare a `C:\progetti\dbability\public`, con `AllowOverride All` e `mod_rewrite` attivo.
 
+Se l'applicazione è pubblicata in una sottocartella (ad esempio `https://dominio.it:8013/dbability/public`), impostare sia `APP_URL` sia `ASSET_URL` con quell'URL completo e senza slash finale, quindi eseguire `php artisan optimize:clear` e `php artisan config:cache`.
+
 ## Caricamento dei PDF
 
 I file non devono essere pubblici. Copiarli in `storage\app\private\pdfs`, poi impostare il relativo percorso nel campo `file_path` del prodotto, ad esempio `pdfs\giochi-movimento.pdf`. In produzione usare barre `/` nel valore memorizzato nel database (`pdfs/giochi-movimento.pdf`).
