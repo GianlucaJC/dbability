@@ -88,7 +88,7 @@ function closeDemo() {
 
 <template>
     <main class="min-h-screen overflow-hidden bg-white text-[#2A2A2A]">
-        <header class="border-b border-[#CAE8CA] bg-white/90">
+        <header class="sticky top-0 z-40 border-b border-[#CAE8CA] bg-white/95 backdrop-blur">
             <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
                 <Link :href="route('home')" class="flex items-center gap-3">
                     <DBabilityLogo class="hidden h-14 w-64 sm:block" />

@@ -6,13 +6,13 @@
         <path d="M111 80c45 7 126 7 205-2" fill="none" stroke="#CAE8CA" stroke-linecap="round" stroke-width="5" />
 
         <g class="logo-person person-one">
-            <circle cx="27" cy="15" r="10" fill="#3A9ECB" stroke="#FFFFFF" stroke-width="3" />
+            <circle class="logo-head head-one" cx="27" cy="15" r="10" fill="#3A9ECB" stroke="#FFFFFF" stroke-width="3" />
             <path d="M27 30 10 63M27 30l18 33" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-width="11" />
             <path d="M27 30 10 63M27 30l18 33" fill="none" stroke="#3A9ECB" stroke-linecap="round" stroke-width="6" />
         </g>
 
         <g class="logo-person person-two">
-            <circle cx="82" cy="13" r="10" fill="#7FAB74" stroke="#FFFFFF" stroke-width="3" />
+            <circle class="logo-head head-two" cx="82" cy="13" r="10" fill="#7FAB74" stroke="#FFFFFF" stroke-width="3" />
             <path d="M82 28 64 63M82 28l18 35" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-width="11" />
             <path d="M82 28 64 63M82 28l18 35" fill="none" stroke="#778363" stroke-linecap="round" stroke-width="6" />
         </g>
@@ -21,38 +21,61 @@
 
 <style scoped>
 @media (prefers-reduced-motion: no-preference) {
-    .dbability-logo .logo-letter,
     .dbability-logo .logo-person {
         transform-box: fill-box;
         transform-origin: center;
     }
 
-    .dbability-logo:hover .logo-d {
-        animation: db-hop 700ms ease-in-out infinite alternate;
+    .dbability-logo .logo-head {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: head-arrives 3.2s ease-in-out infinite;
     }
 
-    .dbability-logo:hover .logo-b {
-        animation: db-hop 700ms ease-in-out 140ms infinite alternate;
+    .dbability-logo .head-two {
+        animation-delay: 380ms;
     }
 
-    .dbability-logo:hover .person-one {
-        animation: child-sway 800ms ease-in-out infinite alternate;
-    }
-
-    .dbability-logo:hover .person-two {
-        animation: child-sway 800ms ease-in-out 160ms infinite alternate-reverse;
+    .dbability-logo .logo-person {
+        animation: child-celebrates 3.2s ease-in-out infinite;
     }
 }
 
-@keyframes db-hop {
-    to {
-        transform: translateY(-7px) rotate(-2deg);
+@keyframes head-arrives {
+    0%,
+    12% {
+        opacity: 0;
+        transform: translateY(30px) scale(.7);
+    }
+
+    22% {
+        opacity: 1;
+    }
+
+    48%,
+    72% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    86%,
+    100% {
+        opacity: 0;
+        transform: translateY(30px) scale(.7);
     }
 }
 
-@keyframes child-sway {
-    to {
-        transform: translateY(-5px) rotate(7deg);
+@keyframes child-celebrates {
+    0%,
+    20%,
+    76%,
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+
+    40%,
+    60% {
+        transform: translateY(-3px) rotate(-3deg);
     }
 }
 </style>
