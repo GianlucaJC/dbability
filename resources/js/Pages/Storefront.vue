@@ -88,12 +88,10 @@ function closeDemo() {
 
 <template>
     <main class="min-h-screen overflow-hidden bg-white text-[#2A2A2A]">
-        <header class="sticky top-0 z-40 border-b border-[#CAE8CA] bg-white/95 backdrop-blur">
+        <header class="fixed inset-x-0 top-0 z-50 border-b border-[#CAE8CA] bg-white/95 backdrop-blur">
             <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
                 <Link :href="route('home')" class="flex items-center gap-3">
-                    <DBabilityLogo class="hidden h-14 w-64 sm:block" />
-                    <BrandMark class="h-10 w-10 sm:hidden" />
-                    <span class="text-2xl font-bold tracking-tight text-[#778363] sm:hidden">DBability</span>
+                    <DBabilityLogo class="block h-12 w-52 sm:h-14 sm:w-64" />
                 </Link>
                 <nav class="flex items-center gap-4 text-sm font-medium">
                     <Link v-if="$page.props.auth.user" :href="route('dashboard')" class="text-[#2A2A2A] hover:text-[#778363]">Area personale</Link>
@@ -108,7 +106,7 @@ function closeDemo() {
         <section class="relative overflow-hidden bg-gradient-to-br from-[#778363] via-[#7FAB74] to-[#CAE8CA]">
             <div class="absolute -left-20 top-16 h-44 w-44 rounded-full bg-white/15 blur-2xl"></div>
             <div class="absolute right-0 top-0 h-56 w-56 rounded-full bg-white/20 blur-2xl"></div>
-            <div class="relative mx-auto max-w-6xl px-6 pb-20 pt-16">
+            <div class="relative mx-auto max-w-6xl px-6 pb-20 pt-36">
             <div class="grid items-center gap-12 md:grid-cols-2">
                 <div class="relative">
                     <p class="mb-4 inline-flex rounded-full bg-white/20 px-4 py-2 text-sm font-bold uppercase tracking-[0.14em] text-white">DBability</p>
