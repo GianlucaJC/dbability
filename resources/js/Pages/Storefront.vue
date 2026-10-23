@@ -88,9 +88,9 @@ function closeDemo() {
 <template>
     <main class="min-h-screen overflow-hidden bg-white text-[#2A2A2A]">
         <header class="fixed inset-x-0 top-0 z-50 border-b border-[#B0E6CD] bg-white/95 backdrop-blur">
-            <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 sm:py-5">
-                <Link :href="route('home')" class="flex shrink-0">
-                    <DBabilityLogo class="block h-10 w-40 sm:h-14 sm:w-64" />
+            <div class="mx-auto flex max-w-6xl items-center gap-2 px-4 py-3 sm:px-6 sm:py-5">
+                <Link :href="route('home')" class="flex min-w-0 flex-1">
+                    <DBabilityLogo class="block h-auto w-full max-w-[13.5rem] sm:h-14 sm:w-64 sm:max-w-none" />
                 </Link>
                 <nav class="flex shrink-0 items-center gap-2 text-xs font-medium sm:gap-4 sm:text-sm">
                     <Link v-if="$page.props.auth.user" :href="route('dashboard')" class="text-[#2A2A2A] hover:text-[#00B050]">Area personale</Link>
