@@ -91,7 +91,7 @@ function closeDemo() {
             <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
                 <Link :href="route('home')" class="flex items-center gap-2 text-2xl font-bold tracking-tight text-[#778363]">
                     <BrandMark class="h-10 w-10" />
-                    DbAbility
+                    DBability
                 </Link>
                 <nav class="flex items-center gap-4 text-sm font-medium">
                     <Link v-if="$page.props.auth.user" :href="route('dashboard')" class="text-teal-800 hover:text-teal-600">Area personale</Link>
@@ -108,7 +108,7 @@ function closeDemo() {
             <div class="absolute right-0 top-0 h-56 w-56 rounded-full bg-cyan-100/70 blur-2xl"></div>
             <div class="grid items-center gap-12 md:grid-cols-2">
                 <div class="relative">
-                    <p class="mb-4 inline-flex rounded-full bg-[#E7EDDD] px-4 py-2 text-sm font-bold uppercase tracking-[0.14em] text-[#778363]">Daniela Belli Abilità</p>
+                    <p class="mb-4 inline-flex rounded-full bg-[#E7EDDD] px-4 py-2 text-sm font-bold uppercase tracking-[0.14em] text-[#778363]">DBability</p>
                     <h1 class="text-4xl font-bold leading-tight text-teal-950 md:text-6xl">Imparare giocando,<br/><span class="text-orange-500">un tratto alla volta.</span></h1>
                     <p class="mt-6 max-w-xl text-lg leading-8 text-slate-600">Risorse digitali per genitori e bambini: attività colorate, semplici e rispettose dei tempi di ciascuno.</p>
                     <a href="#risorse" class="mt-8 inline-flex items-center gap-2 rounded-full bg-orange-500 px-6 py-3 font-semibold text-white shadow-lg shadow-orange-200 hover:bg-orange-600">Scopri le attività <span aria-hidden="true">→</span></a>
@@ -216,7 +216,7 @@ function closeDemo() {
         </div>
 
         <footer class="bg-teal-950 py-10 text-center text-sm text-teal-100">
-            <p>DbAbility — Daniela Belli Abilità</p>
+            <p>DBability</p>
             <p class="mt-2 text-teal-300">Le risorse non sostituiscono una valutazione o un trattamento professionale.</p>
         </footer>
     </main>
