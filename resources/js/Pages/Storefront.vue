@@ -4,12 +4,12 @@ import axios from 'axios';
 import { ref } from 'vue';
 import ActivityArt from '@/Components/ActivityArt.vue';
 import BrandMark from '@/Components/BrandMark.vue';
+import DBabilityLogo from '@/Components/DBabilityLogo.vue';
 
 const props = defineProps({
     products: Array,
     demoCheckout: Boolean,
     demoPdfUrl: String,
-    logoUrl: String,
 });
 
 const page = usePage();
@@ -90,10 +90,10 @@ function closeDemo() {
     <main class="min-h-screen overflow-hidden bg-white text-[#2A2A2A]">
         <header class="border-b border-[#CAE8CA] bg-white/90">
             <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-                <Link :href="route('home')" class="flex items-center gap-3 text-2xl font-bold tracking-tight text-[#2A2A2A]">
-                    <img :src="logoUrl" alt="Dottoressa Daniela Belli" class="hidden h-12 w-auto sm:block" />
+                <Link :href="route('home')" class="flex items-center gap-3">
+                    <DBabilityLogo class="hidden h-14 w-64 sm:block" />
                     <BrandMark class="h-10 w-10 sm:hidden" />
-                    <span class="border-l border-[#CAE8CA] pl-3 text-[#778363]">DBability</span>
+                    <span class="text-2xl font-bold tracking-tight text-[#778363] sm:hidden">DBability</span>
                 </Link>
                 <nav class="flex items-center gap-4 text-sm font-medium">
                     <Link v-if="$page.props.auth.user" :href="route('dashboard')" class="text-[#2A2A2A] hover:text-[#778363]">Area personale</Link>
