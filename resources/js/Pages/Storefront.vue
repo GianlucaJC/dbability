@@ -3,6 +3,7 @@ import { Link, router, usePage } from '@inertiajs/vue3';
 import axios from 'axios';
 import { ref } from 'vue';
 import ActivityArt from '@/Components/ActivityArt.vue';
+import BrandMark from '@/Components/BrandMark.vue';
 
 const props = defineProps({
     products: Array,
@@ -89,7 +90,7 @@ function closeDemo() {
         <header class="border-b border-orange-100 bg-white/90">
             <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
                 <Link :href="route('home')" class="flex items-center gap-2 text-2xl font-bold tracking-tight text-teal-800">
-                    <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-100 text-orange-500">✦</span>
+                    <BrandMark class="h-10 w-10" />
                     DbAbility
                 </Link>
                 <nav class="flex items-center gap-4 text-sm font-medium">
