@@ -14,6 +14,7 @@ class DownloadController extends Controller
         $hasPurchasedProduct = $request->user()->orders()
             ->where('product_id', $product->id)
             ->where('status', 'paid')
+            ->where('purchase_type', 'digital')
             ->exists();
 
         abort_unless($hasPurchasedProduct, 403);

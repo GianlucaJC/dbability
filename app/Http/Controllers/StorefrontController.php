@@ -15,15 +15,16 @@ class StorefrontController extends Controller
             'demoCheckout' => config('services.demo_checkout'),
             'demoPdfUrl' => route('demo.pdf'),
             'products' => Product::query()
+                ->where('slug', Product::STORE_SLUG)
                 ->where('is_active', true)
-                ->orderBy('price_cents')
-                ->get(['id', 'title', 'slug', 'description', 'price_cents', 'file_path'])
+                ->get(['id', 'title', 'slug', 'description', 'price_cents', 'print_price_cents', 'file_path'])
                 ->map(fn (Product $product) => [
                     'id' => $product->id,
                     'title' => $product->title,
                     'slug' => $product->slug,
                     'description' => $product->description,
-                    'price' => $product->price,
+                    'digital_price' => $product->price,
+                    'print_price' => $product->print_price,
                     'demo_download_url' => config('services.demo_checkout')
                         && filled($product->file_path)
                         && Storage::disk('local')->exists($product->file_path)

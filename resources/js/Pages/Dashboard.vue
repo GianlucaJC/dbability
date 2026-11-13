@@ -27,9 +27,13 @@ defineProps({
                             <li v-for="order in orders" :key="order.id" class="flex items-center justify-between gap-4 py-4 first:pt-0">
                                 <div>
                                     <p class="font-semibold text-teal-950">{{ order.title }}</p>
+                                    <p class="mt-1 text-sm text-gray-600">{{ order.purchase_type === 'print' ? 'Edizione cartacea · spedizione inclusa' : 'PDF digitale' }}</p>
+                                    <p v-if="order.purchase_type === 'print' && order.shipping_address" class="mt-1 text-sm text-gray-500">
+                                        Spedito a {{ order.shipping_name }} — {{ order.shipping_address }}
+                                    </p>
                                     <p class="mt-1 text-sm text-gray-500">Acquistato il {{ order.purchased_at }}</p>
                                 </div>
-                                <a :href="order.download_url" class="rounded-full bg-teal-700 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-800">Scarica PDF</a>
+                                <a v-if="order.download_url" :href="order.download_url" class="rounded-full bg-teal-700 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-800">Scarica PDF</a>
                             </li>
                         </ul>
                     </div>

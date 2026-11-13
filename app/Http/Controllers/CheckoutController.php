@@ -23,17 +23,22 @@ class CheckoutController extends Controller
 
         $product = Product::query()
             ->whereKey($request->integer('product_id'))
+            ->where('slug', Product::STORE_SLUG)
             ->where('is_active', true)
             ->firstOrFail();
+        $purchaseType = $request->string('purchase_type')->toString();
+        $isPrint = $purchaseType === 'print';
+        $amountCents = $isPrint ? $product->print_price_cents : $product->price_cents;
 
         $order = $request->user()->orders()->create([
             'product_id' => $product->id,
-            'amount_cents' => $product->price_cents,
+            'purchase_type' => $purchaseType,
+            'amount_cents' => $amountCents,
             'currency' => 'eur',
             'status' => 'pending',
         ]);
 
-        $checkoutSession = (new StripeClient($stripeSecret))->checkout->sessions->create([
+        $sessionParameters = [
             'mode' => 'payment',
             'success_url' => route('checkout.success').'?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => route('home'),
@@ -43,15 +48,27 @@ class CheckoutController extends Controller
             'line_items' => [[
                 'price_data' => [
                     'currency' => 'eur',
-                    'unit_amount' => $product->price_cents,
+                    'unit_amount' => $amountCents,
                     'product_data' => [
-                        'name' => $product->title,
-                        'description' => Str::limit($product->description, 500, ''),
+                        'name' => $product->title.($isPrint ? ' - Edizione cartacea' : ' - PDF digitale'),
+                        'description' => Str::limit(
+                            $product->description.($isPrint ? ' Spedizione inclusa.' : ' PDF digitale.'),
+                            500,
+                            '',
+                        ),
                     ],
                 ],
                 'quantity' => 1,
             ]],
-        ]);
+        ];
+
+        if ($isPrint) {
+            $sessionParameters['shipping_address_collection'] = [
+                'allowed_countries' => ['IT'],
+            ];
+        }
+
+        $checkoutSession = (new StripeClient($stripeSecret))->checkout->sessions->create($sessionParameters);
 
         $order->update(['stripe_checkout_session_id' => $checkoutSession->id]);
 
@@ -62,6 +79,9 @@ class CheckoutController extends Controller
     {
         return Inertia::render('CheckoutSuccess', [
             'sessionId' => $request->string('session_id')->toString(),
+            'purchaseType' => $request->user()->orders()
+                ->where('stripe_checkout_session_id', $request->string('session_id')->toString())
+                ->value('purchase_type'),
         ]);
     }
 }

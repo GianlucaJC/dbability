@@ -9,11 +9,14 @@ class Product extends Model
 {
     use HasFactory;
 
+    public const STORE_SLUG = 'percorsi-pregrafismo-creativo';
+
     protected $fillable = [
         'title',
         'slug',
         'description',
         'price_cents',
+        'print_price_cents',
         'file_path',
         'is_active',
     ];
@@ -25,5 +28,10 @@ class Product extends Model
     public function getPriceAttribute(): string
     {
         return number_format($this->price_cents / 100, 2, ',', '.');
+    }
+
+    public function getPrintPriceAttribute(): string
+    {
+        return number_format($this->print_price_cents / 100, 2, ',', '.');
     }
 }

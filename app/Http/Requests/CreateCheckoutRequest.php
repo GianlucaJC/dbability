@@ -23,6 +23,7 @@ class CreateCheckoutRequest extends FormRequest
     {
         return [
             'product_id' => ['required', 'integer', 'exists:products,id'],
+            'purchase_type' => ['required', 'string', 'in:digital,print'],
         ];
     }
 }
