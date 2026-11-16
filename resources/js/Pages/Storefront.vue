@@ -22,27 +22,27 @@ const demoStep = ref('details');
 const visualFor = (slug) => ({
     'giochi-movimento-coordinazione': {
         art: 'movement',
-        card: 'border-[#37B8BA]/30 bg-white',
-        accent: 'text-[#37B8BA]',
-        button: 'bg-[#37B8BA] hover:bg-[#289FA1]',
+        card: 'border-[#01d1d6]/30 bg-white',
+        accent: 'text-[#01d1d6]',
+        button: 'bg-[#01d1d6] hover:bg-[#019fa3]',
     },
     'percorsi-pregrafismo-creativo': {
         art: 'pregrafismo',
-        card: 'border-[#B0E6CD] bg-[#ECF7F2]',
-        accent: 'text-[#00B050]',
-        button: 'bg-[#00B050] hover:bg-[#008C40]',
+        card: 'border-[#f7c7da] bg-[#fff5f9]',
+        accent: 'text-[#ea5494]',
+        button: 'bg-[#ea5494] hover:bg-[#c93e78]',
     },
     'routine-autonomia-quotidiana': {
         art: 'autonomia',
-        card: 'border-[#BFE7D6] bg-[#F4FCF8]',
-        accent: 'text-[#00B050]',
-        button: 'bg-[#00B050] hover:bg-[#008C40]',
+        card: 'border-[#c7f5f6] bg-[#f7fdfe]',
+        accent: 'text-[#01d1d6]',
+        button: 'bg-[#01d1d6] hover:bg-[#019fa3]',
     },
 }[slug] ?? {
     art: 'autonomia',
-    card: 'border-[#8EDAB6] bg-white',
-    accent: 'text-[#00B050]',
-    button: 'bg-[#00B050] hover:bg-[#008C40]',
+    card: 'border-[#c7f5f6] bg-white',
+    accent: 'text-[#01d1d6]',
+    button: 'bg-[#01d1d6] hover:bg-[#019fa3]',
 });
 
 async function startCheckout(productId, purchaseType) {
@@ -90,36 +90,36 @@ function closeDemo() {
 
 <template>
     <main class="min-h-screen overflow-hidden bg-white text-[#2A2A2A]">
-        <header class="fixed inset-x-0 top-0 z-50 border-b border-[#B0E6CD] bg-white/95 backdrop-blur">
+        <header class="fixed inset-x-0 top-0 z-50 border-b border-[#c7f5f6] bg-white/95 backdrop-blur">
             <div class="mx-auto flex max-w-6xl items-center gap-2 px-4 py-3 sm:px-6 sm:py-5">
                 <Link :href="route('home')" class="flex min-w-0 flex-1">
                     <DBabilityLogo class="block h-auto w-full max-w-[13.5rem] sm:h-14 sm:w-64 sm:max-w-none" />
                 </Link>
                 <nav class="flex shrink-0 items-center gap-2 text-xs font-medium sm:gap-4 sm:text-sm">
-                    <Link v-if="$page.props.auth.user" :href="route('dashboard')" class="text-[#2A2A2A] hover:text-[#00B050]">Area personale</Link>
+                    <Link v-if="$page.props.auth.user" :href="route('dashboard')" class="text-[#2A2A2A] hover:text-[#01d1d6]">Area personale</Link>
                     <template v-else>
-                        <Link :href="route('login')" class="whitespace-nowrap text-[#2A2A2A] hover:text-[#00B050]">Accedi</Link>
-                        <Link :href="route('register')" class="whitespace-nowrap rounded-full bg-[#37B8BA] px-3 py-2 text-white shadow-sm hover:bg-[#289FA1] sm:px-4">Registrati</Link>
+                        <Link :href="route('login')" class="whitespace-nowrap text-[#2A2A2A] hover:text-[#01d1d6]">Accedi</Link>
+                        <Link :href="route('register')" class="whitespace-nowrap rounded-full bg-[#ea5494] px-3 py-2 text-white shadow-sm hover:bg-[#c93e78] sm:px-4">Registrati</Link>
                     </template>
                 </nav>
             </div>
         </header>
 
-        <section class="relative overflow-hidden bg-gradient-to-br from-[#00B050] via-[#43C47E] to-[#B0E6CD]">
+        <section class="relative overflow-hidden bg-gradient-to-br from-[#01d1d6] to-[#ea5494]">
             <div class="absolute -left-20 top-16 h-44 w-44 rounded-full bg-white/15 blur-2xl"></div>
             <div class="absolute right-0 top-0 h-56 w-56 rounded-full bg-white/20 blur-2xl"></div>
             <div class="relative mx-auto max-w-6xl px-6 pb-20 pt-36">
             <div class="grid items-center gap-12 md:grid-cols-2">
                 <div class="relative">
                     <p class="mb-4 inline-flex rounded-full bg-white/20 px-4 py-2 text-sm font-bold uppercase tracking-[0.14em] text-white">DBability</p>
-                    <h1 class="text-4xl font-bold leading-tight text-white md:text-6xl">Imparare giocando,<br/><span class="text-[#ECF7F2]">un tratto alla volta.</span></h1>
+                    <h1 class="text-4xl font-bold leading-tight text-white md:text-6xl">Imparare giocando,<br/><span class="text-white/90">un tratto alla volta.</span></h1>
                     <p class="mt-6 max-w-xl text-lg leading-8 text-white/90">Risorse digitali per genitori e bambini: attività colorate, semplici e rispettose dei tempi di ciascuno.</p>
-                    <a href="#risorse" class="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-[#00B050] shadow-lg shadow-[#008C40]/30 hover:bg-[#ECF7F2]">Scopri le attività <span aria-hidden="true">→</span></a>
+                    <a href="#risorse" class="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-[#ea5494] shadow-lg shadow-[#ea5494]/30 hover:bg-[#fff5f9]">Scopri le attività <span aria-hidden="true">→</span></a>
                 </div>
                 <div class="relative">
-                    <div class="absolute -right-5 -top-5 h-20 w-20 rounded-full bg-[#CF709B]"></div>
+                    <div class="absolute -right-5 -top-5 h-20 w-20 rounded-full bg-[#ea5494]"></div>
                     <div class="relative pb-28">
-                        <div class="overflow-hidden rounded-[2.5rem] bg-white p-3 shadow-xl shadow-[#B0E6CD] ring-8 ring-[#B0E6CD]/40">
+                        <div class="overflow-hidden rounded-[2.5rem] bg-white p-3 shadow-xl shadow-[#01d1d6]/30 ring-8 ring-white/40">
                         <ActivityArt kind="hero" />
                         </div>
                         <BookPreview class="absolute inset-x-3 bottom-[-1.25rem] z-10 mx-auto w-[92%] max-w-lg" />
@@ -129,10 +129,10 @@ function closeDemo() {
             </div>
         </section>
 
-        <section id="profilo" class="bg-[#F4FCF8] py-20">
+        <section id="profilo" class="bg-[#f7fdfe] py-20">
             <div class="mx-auto grid max-w-6xl items-center gap-12 px-6 md:grid-cols-[0.85fr_1.15fr]">
                 <figure class="relative mx-auto w-full max-w-sm">
-                    <div class="absolute -left-4 -top-4 h-24 w-24 rounded-full bg-[#B0E6CD]"></div>
+                    <div class="absolute -left-4 -top-4 h-24 w-24 rounded-full bg-[#c7f5f6]"></div>
                     <img
                         src="/images/daniela-belli.jpg"
                         alt="La Dott.ssa Daniela Belli nel suo studio"
@@ -146,26 +146,26 @@ function closeDemo() {
                 </figure>
 
                 <div>
-                    <p class="font-bold uppercase tracking-[0.16em] text-[#00B050]">Chi sono</p>
+                    <p class="font-bold uppercase tracking-[0.16em] text-[#01d1d6]">Chi sono</p>
                     <h2 class="mt-3 text-3xl font-bold text-[#2A2A2A] md:text-4xl">Esperienza e formazione al servizio della crescita</h2>
                     <p class="mt-4 text-lg leading-8 text-[#737373]">
                         Daniela Belli è Terapista della Neuro e Psicomotricità dell’età evolutiva. Accompagna bambini e famiglie con percorsi e attività pensati per sostenere lo sviluppo e l’autonomia.
                     </p>
 
-                    <div class="mt-8 rounded-[1.75rem] border border-[#B0E6CD] bg-white p-6 shadow-sm sm:p-8">
+                    <div class="mt-8 rounded-[1.75rem] border border-[#c7f5f6] bg-white p-6 shadow-sm sm:p-8">
                         <h3 class="text-xl font-bold text-[#2A2A2A]">Formazione e specializzazioni</h3>
                         <ul class="mt-5 space-y-3 text-sm leading-6 text-[#5F5F5F] sm:text-base">
-                            <li class="flex gap-3"><span class="font-bold text-[#00B050]">✓</span><span>Laurea in Terapia della Neuropsicomotricità dell’età evolutiva presso l’Università Cattolica del Sacro Cuore di Roma.</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-[#00B050]">✓</span><span>Master certificato CENAF in Psicomotricità Funzionale.</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-[#00B050]">✓</span><span>Certificazione in Terapia Manuale Osteopatica Neonatale e Pediatrica.</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-[#00B050]">✓</span><span>Formazione nei metodi Sabbadini, Feuerstein, NEURAC, ARM, Benso, Amorosi e Ambrosini.</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-[#00B050]">✓</span><span>Certificazione in Rieducazione Posturale Globale con Metodo Mézières.</span></li>
+                            <li class="flex gap-3"><span class="font-bold text-[#01d1d6]">✓</span><span>Laurea in Terapia della Neuropsicomotricità dell’età evolutiva presso l’Università Cattolica del Sacro Cuore di Roma.</span></li>
+                            <li class="flex gap-3"><span class="font-bold text-[#01d1d6]">✓</span><span>Master certificato CENAF in Psicomotricità Funzionale.</span></li>
+                            <li class="flex gap-3"><span class="font-bold text-[#01d1d6]">✓</span><span>Certificazione in Terapia Manuale Osteopatica Neonatale e Pediatrica.</span></li>
+                            <li class="flex gap-3"><span class="font-bold text-[#01d1d6]">✓</span><span>Formazione nei metodi Sabbadini, Feuerstein, NEURAC, ARM, Benso, Amorosi e Ambrosini.</span></li>
+                            <li class="flex gap-3"><span class="font-bold text-[#01d1d6]">✓</span><span>Certificazione in Rieducazione Posturale Globale con Metodo Mézières.</span></li>
                         </ul>
                         <a
                             href="https://www.danielabelli.it/chi_sono.php?i=2"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="mt-7 inline-flex items-center gap-2 rounded-full bg-[#00B050] px-5 py-3 font-semibold text-white shadow-sm transition hover:bg-[#008C40]"
+                            class="mt-7 inline-flex items-center gap-2 rounded-full bg-[#ea5494] px-5 py-3 font-semibold text-white shadow-sm transition hover:bg-[#c93e78]"
                         >
                             Scopri il curriculum completo <span aria-hidden="true">↗</span>
                         </a>
@@ -177,7 +177,7 @@ function closeDemo() {
         <section id="risorse" class="bg-white py-20">
             <div class="mx-auto max-w-6xl px-6">
                 <div class="max-w-2xl">
-                    <p class="font-bold uppercase tracking-[0.16em] text-[#00B050]">Il PDF</p>
+                    <p class="font-bold uppercase tracking-[0.16em] text-[#01d1d6]">Il PDF</p>
                     <h2 class="mt-3 text-3xl font-bold text-[#2A2A2A] md:text-4xl">Un percorso, due modalità di acquisto</h2>
                     <p class="mt-4 text-lg leading-8 text-[#737373]">Il PDF propone attività concrete e ripetibili, con indicazioni pensate per chi accompagna il bambino. Scarica il materiale giusto per te: utile per operatori, terapisti, famiglie e scuole.</p>
                 </div>
@@ -196,7 +196,7 @@ function closeDemo() {
                                 <span>{{ processingProductId === product.id ? 'Attendere...' : demoCheckout ? 'Prova digitale' : 'PDF digitale' }}</span>
                                 <strong>€ {{ product.digital_price }}</strong>
                             </button>
-                            <button type="button" class="flex items-center justify-between gap-3 rounded-2xl border-2 border-[#00B050] bg-white px-5 py-4 text-left font-semibold text-[#008C40] hover:bg-[#ECF7F2] disabled:cursor-wait disabled:opacity-60" :disabled="processingProductId === product.id" @click="purchase(product.id, 'print')">
+                            <button type="button" class="flex items-center justify-between gap-3 rounded-2xl border-2 border-[#ea5494] bg-white px-5 py-4 text-left font-semibold text-[#ea5494] hover:bg-[#fff5f9] disabled:cursor-wait disabled:opacity-60" :disabled="processingProductId === product.id" @click="purchase(product.id, 'print')">
                                 <span>{{ processingProductId === product.id ? 'Attendere...' : demoCheckout ? 'Prova cartaceo' : 'Cartaceo stampato' }}<small class="mt-1 block text-xs font-normal text-[#737373]">Spedizione inclusa in Italia</small></span>
                                 <strong>€ {{ product.print_price }}</strong>
                             </button>
@@ -207,10 +207,10 @@ function closeDemo() {
             </div>
         </section>
 
-        <section class="bg-gradient-to-r from-[#00B050] via-[#37B8BA] to-[#CF709B] py-14 text-white">
+        <section class="bg-gradient-to-r from-[#01d1d6] to-[#ea5494] py-14 text-white">
             <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 text-center md:flex-row md:text-left">
                 <div>
-                    <p class="text-sm font-bold uppercase tracking-[0.16em] text-[#ECF7F2]">Scegli come riceverlo</p>
+                    <p class="text-sm font-bold uppercase tracking-[0.16em] text-white/90">Scegli come riceverlo</p>
                     <h2 class="mt-2 text-2xl font-bold">Il formato giusto per un momento insieme.</h2>
                 </div>
                 <div class="flex flex-wrap justify-center gap-3 text-sm font-semibold">
@@ -221,17 +221,17 @@ function closeDemo() {
             </div>
         </section>
 
-        <section id="contatti" class="bg-[#F4FCF8] py-16">
+        <section id="contatti" class="bg-[#f7fdfe] py-16">
             <div class="mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-2 md:items-center">
                 <div>
-                    <p class="font-bold uppercase tracking-[0.16em] text-[#00B050]">Contatti</p>
+                    <p class="font-bold uppercase tracking-[0.16em] text-[#01d1d6]">Contatti</p>
                     <h2 class="mt-3 text-3xl font-bold text-[#2A2A2A]">Restiamo in contatto</h2>
                     <p class="mt-3 max-w-lg leading-7 text-[#737373]">Per informazioni sulle attività e sui materiali, puoi contattare Daniela o visitare il suo sito.</p>
                     <a
                         href="https://www.danielabelli.it"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="mt-6 inline-flex items-center gap-2 rounded-full border border-[#00B050] bg-white px-5 py-3 font-semibold text-[#008C40] shadow-sm transition hover:bg-[#ECF7F2]"
+                        class="mt-6 inline-flex items-center gap-2 rounded-full border border-[#01d1d6] bg-white px-5 py-3 font-semibold text-[#01d1d6] shadow-sm transition hover:bg-[#f7fdfe]"
                     >
                         Visita danielabelli.it <span aria-hidden="true">↗</span>
                     </a>
@@ -239,23 +239,23 @@ function closeDemo() {
 
                 <div class="grid gap-3 sm:grid-cols-2">
                     <a href="mailto:dottoressadanielabelli@gmail.com" class="rounded-2xl bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-                        <span class="text-xs font-bold uppercase tracking-wider text-[#00B050]">Email</span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#01d1d6]">Email</span>
                         <span class="mt-2 block break-all font-semibold text-[#2A2A2A]">dottoressadanielabelli@gmail.com</span>
                     </a>
                     <a href="tel:+393479573184" class="rounded-2xl bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-                        <span class="text-xs font-bold uppercase tracking-wider text-[#00B050]">Telefono</span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#01d1d6]">Telefono</span>
                         <span class="mt-2 block font-semibold text-[#2A2A2A]">+39 347 9573184</span>
                     </a>
                     <a href="https://www.facebook.com/dott.ssa.danielabelli/" target="_blank" rel="noopener noreferrer" class="rounded-2xl bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-                        <span class="text-xs font-bold uppercase tracking-wider text-[#00B050]">Facebook</span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#01d1d6]">Facebook</span>
                         <span class="mt-2 block font-semibold text-[#2A2A2A]">Dott.ssa Daniela Belli ↗</span>
                     </a>
                     <a href="https://instagram.com/dott.ssa_daniela_belli/" target="_blank" rel="noopener noreferrer" class="rounded-2xl bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-                        <span class="text-xs font-bold uppercase tracking-wider text-[#00B050]">Instagram</span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#ea5494]">Instagram</span>
                         <span class="mt-2 block font-semibold text-[#2A2A2A]">@dott.ssa_daniela_belli ↗</span>
                     </a>
                     <a href="https://wa.me/393479573184" target="_blank" rel="noopener noreferrer" class="rounded-2xl bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:col-span-2">
-                        <span class="text-xs font-bold uppercase tracking-wider text-[#00B050]">WhatsApp</span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#01d1d6]">WhatsApp</span>
                         <span class="mt-2 block font-semibold text-[#2A2A2A]">Scrivi a Daniela ↗</span>
                     </a>
                 </div>
@@ -264,31 +264,31 @@ function closeDemo() {
 
         <section id="dove-ricevo" class="bg-white py-16">
             <div class="mx-auto max-w-6xl px-6">
-                <p class="font-bold uppercase tracking-[0.16em] text-[#00B050]">Dove ricevo</p>
+                <p class="font-bold uppercase tracking-[0.16em] text-[#01d1d6]">Dove ricevo</p>
                 <h2 class="mt-3 text-3xl font-bold text-[#2A2A2A]">Le sedi</h2>
                 <div class="mt-8 grid gap-5 md:grid-cols-2">
-                    <article class="rounded-[1.75rem] border border-[#B0E6CD] bg-[#F4FCF8] p-6 sm:p-8">
-                        <p class="text-sm font-bold uppercase tracking-wider text-[#00B050]">San Giovanni Teatino (CH)</p>
+                    <article class="rounded-[1.75rem] border border-[#c7f5f6] bg-[#f7fdfe] p-6 sm:p-8">
+                        <p class="text-sm font-bold uppercase tracking-wider text-[#01d1d6]">San Giovanni Teatino (CH)</p>
                         <h3 class="mt-3 text-xl font-bold text-[#2A2A2A]">Studio di Riabilitazione Neuromotoria e Logopedica</h3>
                         <p class="mt-2 leading-7 text-[#737373]">Galleria Woytila 17</p>
                         <a
                             href="https://www.google.com/maps/search/?api=1&query=Galleria+Woytila+17%2C+San+Giovanni+Teatino"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="mt-5 inline-flex items-center gap-2 font-semibold text-[#008C40] hover:underline"
+                            class="mt-5 inline-flex items-center gap-2 font-semibold text-[#01d1d6] hover:underline"
                         >
                             Indicazioni stradali <span aria-hidden="true">↗</span>
                         </a>
                     </article>
-                    <article class="rounded-[1.75rem] border border-[#B0E6CD] bg-[#F4FCF8] p-6 sm:p-8">
-                        <p class="text-sm font-bold uppercase tracking-wider text-[#00B050]">Pianella (PE)</p>
+                    <article class="rounded-[1.75rem] border border-[#f7c7da] bg-[#fff5f9] p-6 sm:p-8">
+                        <p class="text-sm font-bold uppercase tracking-wider text-[#ea5494]">Pianella (PE)</p>
                         <h3 class="mt-3 text-xl font-bold text-[#2A2A2A]">Studio Osteomed</h3>
                         <p class="mt-2 leading-7 text-[#737373]">Contrada Quercia Dell’Ompiso 28</p>
                         <a
                             href="https://www.google.com/maps/search/?api=1&query=Contrada+Quercia+Dell%27Ompiso+28%2C+Pianella"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="mt-5 inline-flex items-center gap-2 font-semibold text-[#008C40] hover:underline"
+                            class="mt-5 inline-flex items-center gap-2 font-semibold text-[#ea5494] hover:underline"
                         >
                             Indicazioni stradali <span aria-hidden="true">↗</span>
                         </a>
@@ -302,43 +302,43 @@ function closeDemo() {
                 <template v-if="demoStep === 'details'">
                     <div class="flex items-start justify-between gap-4">
                         <div>
-                            <p class="text-sm font-semibold uppercase tracking-wider text-[#00B050]">Checkout dimostrativo</p>
+                            <p class="text-sm font-semibold uppercase tracking-wider text-[#01d1d6]">Checkout dimostrativo</p>
                             <h2 id="demo-checkout-title" class="mt-2 text-2xl font-bold text-[#2A2A2A]">{{ selectedProduct.title }}</h2>
                         </div>
                         <button type="button" class="text-2xl leading-none text-[#737373] hover:text-[#2A2A2A]" aria-label="Chiudi" @click="closeDemo">×</button>
                     </div>
                     <p class="mt-5 leading-7 text-[#737373]">{{ selectedProduct.description }}</p>
-                    <div class="mt-6 rounded-2xl bg-[#B0E6CD]/40 p-4">
+                    <div class="mt-6 rounded-2xl bg-[#f7fdfe] p-4">
                         <div class="flex items-center justify-between">
                             <span class="font-medium text-[#2A2A2A]">{{ selectedPurchaseType === 'print' ? 'Edizione cartacea' : 'PDF digitale' }}</span>
-                            <strong class="text-xl text-[#00B050]">€ {{ selectedPurchaseType === 'print' ? selectedProduct.print_price : selectedProduct.digital_price }}</strong>
+                            <strong class="text-xl text-[#ea5494]">€ {{ selectedPurchaseType === 'print' ? selectedProduct.print_price : selectedProduct.digital_price }}</strong>
                         </div>
                         <p v-if="selectedPurchaseType === 'print'" class="mt-2 text-sm text-[#737373]">Stampa e spedizione in Italia incluse. L’indirizzo verrà richiesto nel checkout.</p>
                         <p class="mt-2 text-sm text-[#737373]">Questa è una simulazione: nessun pagamento verrà richiesto e non verrà creato alcun ordine.</p>
                     </div>
                     <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-                        <a v-if="selectedPurchaseType === 'digital'" :href="selectedProduct.demo_download_url ?? demoPdfUrl" target="_blank" rel="noopener" class="rounded-full border border-[#00B050] px-5 py-3 text-center font-semibold text-[#00B050] hover:bg-[#B0E6CD]/40">
+                        <a v-if="selectedPurchaseType === 'digital'" :href="selectedProduct.demo_download_url ?? demoPdfUrl" target="_blank" rel="noopener" class="rounded-full border border-[#01d1d6] px-5 py-3 text-center font-semibold text-[#01d1d6] hover:bg-[#f7fdfe]">
                             {{ selectedProduct.demo_download_url ? 'Apri questa risorsa' : 'Apri PDF di prova' }}
                         </a>
-                        <button type="button" class="rounded-full bg-[#37B8BA] px-5 py-3 font-semibold text-white hover:bg-[#289FA1]" @click="simulatePayment">Simula pagamento</button>
+                        <button type="button" class="rounded-full bg-[#ea5494] px-5 py-3 font-semibold text-white hover:bg-[#c93e78]" @click="simulatePayment">Simula pagamento</button>
                     </div>
                 </template>
 
                 <div v-else-if="demoStep === 'processing'" class="py-10 text-center">
-                    <div class="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-[#B0E6CD] border-t-[#37B8BA]"></div>
+                    <div class="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-[#c7f5f6] border-t-[#01d1d6]"></div>
                     <h2 class="mt-5 text-2xl font-bold text-[#2A2A2A]">Pagamento in elaborazione</h2>
                     <p class="mt-2 text-[#737373]">Stiamo simulando una transazione sicura.</p>
                 </div>
 
                 <div v-else class="py-4 text-center">
-                    <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#B0E6CD] text-2xl text-[#00B050]">✓</div>
+                    <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#c7f5f6] text-2xl text-[#01d1d6]">✓</div>
                     <h2 class="mt-5 text-2xl font-bold text-[#2A2A2A]">Pagamento simulato con successo</h2>
                     <p class="mt-3 leading-7 text-[#737373]">{{ selectedPurchaseType === 'print' ? 'In modalità reale, il prodotto cartaceo verrebbe spedito all’indirizzo indicato nel checkout.' : 'In modalità reale, il PDF acquistato sarebbe ora disponibile nell’area personale.' }}</p>
                     <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
-                        <a v-if="selectedPurchaseType === 'digital'" :href="selectedProduct.demo_download_url ?? demoPdfUrl" target="_blank" rel="noopener" class="rounded-full bg-[#37B8BA] px-5 py-3 font-semibold text-white hover:bg-[#289FA1]">
+                        <a v-if="selectedPurchaseType === 'digital'" :href="selectedProduct.demo_download_url ?? demoPdfUrl" target="_blank" rel="noopener" class="rounded-full bg-[#01d1d6] px-5 py-3 font-semibold text-white hover:bg-[#019fa3]">
                             {{ selectedProduct.demo_download_url ? 'Scarica questa risorsa' : 'Scarica il PDF di prova' }}
                         </a>
-                        <button type="button" class="rounded-full border border-[#8EDAB6] px-5 py-3 font-semibold text-[#2A2A2A] hover:bg-[#B0E6CD]/40" @click="closeDemo">Chiudi</button>
+                        <button type="button" class="rounded-full border border-[#c7f5f6] px-5 py-3 font-semibold text-[#2A2A2A] hover:bg-[#f7fdfe]" @click="closeDemo">Chiudi</button>
                     </div>
                 </div>
             </section>
@@ -346,7 +346,7 @@ function closeDemo() {
 
         <footer class="bg-[#2A2A2A] py-10 text-center text-sm text-white">
             <p>DBability</p>
-            <p class="mt-2 text-[#B0E6CD]">Le risorse non sostituiscono una valutazione o un trattamento professionale.</p>
+            <p class="mt-2 text-[#c7f5f6]">Le risorse non sostituiscono una valutazione o un trattamento professionale.</p>
         </footer>
 
         <a
@@ -355,7 +355,7 @@ function closeDemo() {
             rel="noopener noreferrer"
             aria-label="Contatta Daniela subito su WhatsApp"
             title="Contatta Daniela su WhatsApp"
-            class="fixed bottom-5 right-5 z-40 inline-flex h-14 items-center gap-2 rounded-full bg-[#25D366] px-4 font-bold text-white shadow-xl transition hover:-translate-y-1 hover:bg-[#1FB85A] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-white"
+            class="fixed bottom-5 right-5 z-40 inline-flex h-14 items-center gap-2 rounded-full bg-[#01d1d6] px-4 font-bold text-white shadow-xl transition hover:-translate-y-1 hover:bg-[#019fa3] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
             <svg viewBox="0 0 24 24" class="h-7 w-7 shrink-0" fill="none" aria-hidden="true">
                 <path d="M20.2 11.8a8.2 8.2 0 0 1-12.1 7.2L3.5 20l1-4.4a8.2 8.2 0 1 1 15.7-3.8Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" />
