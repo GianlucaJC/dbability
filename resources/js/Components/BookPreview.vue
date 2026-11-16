@@ -92,7 +92,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .book-preview {
-    border: 1px solid rgb(176 230 205 / 75%);
+    border: 1px solid rgb(1 209 214 / 55%);
     border-radius: 1.25rem;
     background: rgb(255 255 255 / 96%);
     padding: 0.6rem;
@@ -207,7 +207,7 @@ onBeforeUnmount(() => {
 .book-preview__button {
     flex: none;
     border-radius: 9999px;
-    background: #00b050;
+    background: linear-gradient(90deg, #01d1d6, #ea5494);
     padding: 0.45rem 0.8rem;
     color: white;
     font-size: 0.68rem;
@@ -216,7 +216,7 @@ onBeforeUnmount(() => {
 }
 
 .book-preview__button:hover {
-    background: #008c40;
+    background: linear-gradient(90deg, #019fa3, #c93e78);
 }
 
 .book-preview__button:disabled {
@@ -225,7 +225,7 @@ onBeforeUnmount(() => {
 }
 
 .book-preview__button:focus-visible {
-    outline: 3px solid #37b8ba;
+    outline: 3px solid #01d1d6;
     outline-offset: 3px;
 }
 

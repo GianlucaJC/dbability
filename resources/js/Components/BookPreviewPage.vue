@@ -14,28 +14,28 @@ defineProps({
         <p v-if="page.description" class="preview-page__description">{{ page.description }}</p>
 
         <svg v-if="page.kind === 'cover'" class="preview-page__art" viewBox="0 0 160 90" aria-hidden="true">
-            <path d="M12 64c22-37 34 31 58-3s33-35 47-5 24 11 34-17" fill="none" stroke="#37B8BA" stroke-linecap="round" stroke-width="6" stroke-dasharray="1 13" />
-            <circle cx="30" cy="27" r="10" fill="#CF709B" />
-            <path d="m113 18 7 12 14 2-10 10 2 14-13-7-12 7 2-14-10-10 14-2z" fill="#8EDAB6" />
+            <path d="M12 64c22-37 34 31 58-3s33-35 47-5 24 11 34-17" fill="none" stroke="#01d1d6" stroke-linecap="round" stroke-width="6" stroke-dasharray="1 13" />
+            <circle cx="30" cy="27" r="10" fill="#ea5494" />
+            <path d="m113 18 7 12 14 2-10 10 2 14-13-7-12 7 2-14-10-10 14-2z" fill="#f7c7da" />
         </svg>
         <svg v-else-if="page.kind === 'curves'" class="preview-page__art" viewBox="0 0 160 90" aria-hidden="true">
-            <path d="M12 22c26 0 26 46 52 46s26-46 52-46 26 46 42 46" fill="none" stroke="#37B8BA" stroke-linecap="round" stroke-width="5" />
-            <circle cx="13" cy="22" r="5" fill="#00B050" />
-            <circle cx="147" cy="68" r="5" fill="#CF709B" />
+            <path d="M12 22c26 0 26 46 52 46s26-46 52-46 26 46 42 46" fill="none" stroke="#01d1d6" stroke-linecap="round" stroke-width="5" />
+            <circle cx="13" cy="22" r="5" fill="#ea5494" />
+            <circle cx="147" cy="68" r="5" fill="#ea5494" />
         </svg>
         <svg v-else-if="page.kind === 'zigzag'" class="preview-page__art" viewBox="0 0 160 90" aria-hidden="true">
-            <path d="M12 22h28l18 23-18 23H12m54-46h28l18 23-18 23H66m54-46h28" fill="none" stroke="#00B050" stroke-linecap="round" stroke-linejoin="round" stroke-width="5" />
-            <circle cx="12" cy="22" r="5" fill="#CF709B" />
+            <path d="M12 22h28l18 23-18 23H12m54-46h28l18 23-18 23H66m54-46h28" fill="none" stroke="#ea5494" stroke-linecap="round" stroke-linejoin="round" stroke-width="5" />
+            <circle cx="12" cy="22" r="5" fill="#01d1d6" />
         </svg>
         <svg v-else-if="page.kind === 'dots'" class="preview-page__art" viewBox="0 0 160 90" aria-hidden="true">
-            <path d="M13 68c27 0 22-46 48-46s22 46 48 46 23-46 38-46" fill="none" stroke="#37B8BA" stroke-linecap="round" stroke-width="5" stroke-dasharray="1 11" />
-            <circle cx="13" cy="68" r="6" fill="#00B050" />
-            <path d="m130 18 7 12 14 2-10 10 2 14-13-7-12 7 2-14-10-10 14-2z" fill="#CF709B" />
+            <path d="M13 68c27 0 22-46 48-46s22 46 48 46 23-46 38-46" fill="none" stroke="#01d1d6" stroke-linecap="round" stroke-width="5" stroke-dasharray="1 11" />
+            <circle cx="13" cy="68" r="6" fill="#ea5494" />
+            <path d="m130 18 7 12 14 2-10 10 2 14-13-7-12 7 2-14-10-10 14-2z" fill="#ea5494" />
         </svg>
         <svg v-else class="preview-page__art" viewBox="0 0 160 90" aria-hidden="true">
-            <circle cx="37" cy="45" r="23" fill="none" stroke="#37B8BA" stroke-width="5" />
-            <rect x="73" y="22" width="46" height="46" rx="8" fill="none" stroke="#00B050" stroke-width="5" />
-            <path d="m137 20 24 48h-48z" fill="none" stroke="#CF709B" stroke-linejoin="round" stroke-width="5" />
+            <circle cx="37" cy="45" r="23" fill="none" stroke="#01d1d6" stroke-width="5" />
+            <rect x="73" y="22" width="46" height="46" rx="8" fill="none" stroke="#ea5494" stroke-width="5" />
+            <path d="m137 20 24 48h-48z" fill="none" stroke="#ea5494" stroke-linejoin="round" stroke-width="5" />
         </svg>
 
         <span class="preview-page__number">{{ page.number }}</span>
@@ -55,11 +55,11 @@ defineProps({
 }
 
 .preview-page--cover {
-    background: linear-gradient(145deg, #f3fbf7, #ffffff 66%);
+    background: linear-gradient(145deg, #f7fdfe, #fff5f9 66%);
 }
 
 .preview-page__eyebrow {
-    color: #008c40;
+    color: #ea5494;
     font-size: 0.48rem;
     font-weight: 800;
     letter-spacing: 0.12em;
@@ -75,7 +75,7 @@ h3 {
 }
 
 .preview-page--cover h3 {
-    color: #008c40;
+    color: #ea5494;
     font-size: clamp(0.78rem, 2.6vw, 1rem);
 }
 
