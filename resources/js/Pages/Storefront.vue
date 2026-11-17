@@ -1,5 +1,5 @@
 <script setup>
-import { Link, router, usePage } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import axios from 'axios';
 import { ref } from 'vue';
 import ActivityArt from '@/Components/ActivityArt.vue';
@@ -18,6 +18,7 @@ const checkoutError = ref('');
 const selectedProduct = ref(null);
 const selectedPurchaseType = ref('digital');
 const demoStep = ref('details');
+const authPrompt = ref(null);
 
 const visualFor = (slug) => ({
     'giochi-movimento-coordinazione': {
@@ -67,11 +68,21 @@ function purchase(productId, purchaseType) {
     }
 
     if (!page.props.auth.user) {
-        router.visit(route('login'));
+        authPrompt.value = { productId, purchaseType };
         return;
     }
 
     startCheckout(productId, purchaseType);
+}
+
+function continueAsGuest() {
+    const { productId, purchaseType } = authPrompt.value;
+    authPrompt.value = null;
+    startCheckout(productId, purchaseType);
+}
+
+function closeAuthPrompt() {
+    authPrompt.value = null;
 }
 
 function simulatePayment() {
@@ -296,6 +307,31 @@ function closeDemo() {
                 </div>
             </div>
         </section>
+
+        <div v-if="authPrompt" class="fixed inset-0 z-50 flex items-center justify-center bg-[#2A2A2A]/60 p-4" @click.self="closeAuthPrompt">
+            <section class="w-full max-w-lg rounded-3xl bg-white p-8 shadow-2xl" aria-modal="true" role="dialog" aria-labelledby="auth-prompt-title">
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <p class="text-sm font-semibold uppercase tracking-wider text-[#01d1d6]">Prima dell'acquisto</p>
+                        <h2 id="auth-prompt-title" class="mt-2 text-2xl font-bold text-[#2A2A2A]">Non hai effettuato l'accesso</h2>
+                    </div>
+                    <button type="button" class="text-2xl leading-none text-[#737373] hover:text-[#2A2A2A]" aria-label="Chiudi" @click="closeAuthPrompt">×</button>
+                </div>
+                <p class="mt-5 leading-7 text-[#737373]">
+                    Puoi acquistare comunque, senza creare un account:
+                    <template v-if="authPrompt.purchaseType === 'digital'"> riceverai via email un link per scaricare il PDF, valido anche in futuro.</template>
+                    <template v-else> riceverai via email la conferma dell'ordine con i dati di spedizione.</template>
+                </p>
+                <p class="mt-3 leading-7 text-[#737373]">Con un account gratuito, invece, ritroverai sempre i tuoi acquisti nell'area personale.</p>
+                <div class="mt-6 flex flex-col gap-3">
+                    <button type="button" class="rounded-full bg-[#ea5494] px-5 py-3 font-semibold text-white hover:bg-[#c93e78]" @click="continueAsGuest">Continua senza account</button>
+                    <div class="flex flex-col gap-3 sm:flex-row">
+                        <Link :href="route('login')" class="flex-1 rounded-full border border-[#01d1d6] px-5 py-3 text-center font-semibold text-[#01d1d6] hover:bg-[#f7fdfe]">Accedi</Link>
+                        <Link :href="route('register')" class="flex-1 rounded-full border border-[#01d1d6] px-5 py-3 text-center font-semibold text-[#01d1d6] hover:bg-[#f7fdfe]">Registrati</Link>
+                    </div>
+                </div>
+            </section>
+        </div>
 
         <div v-if="selectedProduct" class="fixed inset-0 z-50 flex items-center justify-center bg-[#2A2A2A]/60 p-4" @click.self="closeDemo">
             <section class="w-full max-w-lg rounded-3xl bg-white p-8 shadow-2xl" aria-modal="true" role="dialog" aria-labelledby="demo-checkout-title">

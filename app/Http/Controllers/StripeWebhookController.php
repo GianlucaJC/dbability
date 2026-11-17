@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderPaidMail;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Stripe\Exception\SignatureVerificationException;
 use Stripe\Webhook;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,11 +38,24 @@ class StripeWebhookController extends Controller
                 ->first();
 
             if ($order !== null && $order->status !== 'paid') {
+                $customerEmail = isset($session->customer_details, $session->customer_details->email)
+                    ? $session->customer_details->email
+                    : null;
+
                 $paidOrder = [
                     'status' => 'paid',
                     'stripe_payment_intent_id' => is_string($session->payment_intent) ? $session->payment_intent : null,
                     'paid_at' => now(),
                 ];
+
+                if (is_string($customerEmail) && $customerEmail !== '') {
+                    $paidOrder['customer_email'] = $customerEmail;
+
+                    if ($order->user_id === null) {
+                        // Aggancia l'ordine guest a un account esistente con la stessa email.
+                        $paidOrder['user_id'] = User::query()->where('email', $customerEmail)->value('id');
+                    }
+                }
 
                 if ($order->purchase_type === 'print') {
                     $shippingDetails = $session->collected_information?->shipping_details
@@ -59,6 +75,17 @@ class StripeWebhookController extends Controller
                 }
 
                 $order->update($paidOrder);
+
+                $recipient = $order->customer_email ?? $order->user?->email;
+
+                if ($recipient !== null) {
+                    try {
+                        Mail::to($recipient)->send(new OrderPaidMail($order->fresh('product')));
+                    } catch (\Throwable $exception) {
+                        // L'invio email non deve far fallire il webhook: Stripe lo ritenterebbe.
+                        report($exception);
+                    }
+                }
             }
         }
 

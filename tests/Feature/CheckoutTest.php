@@ -2,20 +2,30 @@
 
 namespace Tests\Feature;
 
+use App\Mail\OrderPaidMail;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Tests\TestCase;
 
 class CheckoutTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_checkout_requires_authentication(): void
+    public function test_a_guest_can_start_a_checkout(): void
     {
-        $response = $this->post(route('checkout.store'), ['product_id' => 1]);
+        $response = $this->postJson(route('checkout.store'), [
+            'product_id' => 999,
+            'purchase_type' => 'digital',
+        ]);
 
-        $response->assertRedirect(route('login'));
+        // Il guest non viene rimandato al login: arriva alla validazione.
+        $response->assertUnprocessable()
+            ->assertJsonValidationErrors('product_id');
     }
 
     public function test_checkout_validates_the_product(): void
@@ -177,5 +187,154 @@ class CheckoutTest extends TestCase
             'shipping_postal_code' => '20100',
             'shipping_country' => 'IT',
         ]);
+    }
+
+    public function test_paid_digital_webhook_for_a_guest_saves_the_email_and_sends_the_download_link(): void
+    {
+        Mail::fake();
+        config()->set('services.stripe.webhook_secret', 'whsec_test');
+        $product = $this->createFeaturedProduct();
+        $order = Order::create([
+            'user_id' => null,
+            'product_id' => $product->id,
+            'purchase_type' => 'digital',
+            'amount_cents' => 3500,
+            'currency' => 'eur',
+            'status' => 'pending',
+            'stripe_checkout_session_id' => 'cs_test_guest',
+        ]);
+
+        $response = $this->postWebhook([
+            'id' => 'cs_test_guest',
+            'object' => 'checkout.session',
+            'payment_status' => 'paid',
+            'payment_intent' => 'pi_test_guest',
+            'customer_details' => ['email' => 'guest@example.com'],
+        ]);
+
+        $response->assertNoContent();
+        $this->assertDatabaseHas('orders', [
+            'id' => $order->id,
+            'status' => 'paid',
+            'customer_email' => 'guest@example.com',
+            'user_id' => null,
+        ]);
+        Mail::assertSent(OrderPaidMail::class, fn (OrderPaidMail $mail) => $mail->hasTo('guest@example.com') && $mail->order->is($order));
+    }
+
+    public function test_a_guest_order_is_linked_to_an_existing_account_with_the_same_email(): void
+    {
+        Mail::fake();
+        config()->set('services.stripe.webhook_secret', 'whsec_test');
+        $user = User::factory()->create(['email' => 'cliente@example.com']);
+        $product = $this->createFeaturedProduct();
+        $order = Order::create([
+            'user_id' => null,
+            'product_id' => $product->id,
+            'purchase_type' => 'digital',
+            'amount_cents' => 3500,
+            'currency' => 'eur',
+            'status' => 'pending',
+            'stripe_checkout_session_id' => 'cs_test_link',
+        ]);
+
+        $this->postWebhook([
+            'id' => 'cs_test_link',
+            'object' => 'checkout.session',
+            'payment_status' => 'paid',
+            'payment_intent' => 'pi_test_link',
+            'customer_details' => ['email' => 'cliente@example.com'],
+        ])->assertNoContent();
+
+        $this->assertDatabaseHas('orders', [
+            'id' => $order->id,
+            'status' => 'paid',
+            'customer_email' => 'cliente@example.com',
+            'user_id' => $user->id,
+        ]);
+    }
+
+    public function test_a_signed_link_downloads_the_purchased_pdf(): void
+    {
+        Storage::fake('local');
+        Storage::disk('local')->put('pdfs/risorsa.pdf', '%PDF-1.4 contenuto di prova');
+        $product = $this->createFeaturedProduct(['file_path' => 'pdfs/risorsa.pdf']);
+        $order = Order::create([
+            'user_id' => null,
+            'customer_email' => 'guest@example.com',
+            'product_id' => $product->id,
+            'purchase_type' => 'digital',
+            'amount_cents' => 3500,
+            'currency' => 'eur',
+            'status' => 'paid',
+        ]);
+
+        $response = $this->get(URL::signedRoute('orders.download', ['order' => $order->id]));
+
+        $response->assertOk()
+            ->assertDownload($product->slug.'.pdf');
+    }
+
+    public function test_the_order_download_requires_a_valid_signature(): void
+    {
+        $product = $this->createFeaturedProduct(['file_path' => 'pdfs/risorsa.pdf']);
+        $order = Order::create([
+            'user_id' => null,
+            'product_id' => $product->id,
+            'purchase_type' => 'digital',
+            'amount_cents' => 3500,
+            'currency' => 'eur',
+            'status' => 'paid',
+        ]);
+
+        $this->get(route('orders.download', $order))->assertForbidden();
+    }
+
+    public function test_an_unpaid_order_cannot_be_downloaded_even_with_a_valid_signature(): void
+    {
+        $product = $this->createFeaturedProduct(['file_path' => 'pdfs/risorsa.pdf']);
+        $order = Order::create([
+            'user_id' => null,
+            'product_id' => $product->id,
+            'purchase_type' => 'digital',
+            'amount_cents' => 3500,
+            'currency' => 'eur',
+            'status' => 'pending',
+        ]);
+
+        $this->get(URL::signedRoute('orders.download', ['order' => $order->id]))->assertForbidden();
+    }
+
+    private function createFeaturedProduct(array $attributes = []): Product
+    {
+        return Product::create(array_merge([
+            'title' => 'Risorsa in evidenza',
+            'slug' => Product::STORE_SLUG,
+            'description' => 'Descrizione della risorsa.',
+            'price_cents' => 3500,
+            'print_price_cents' => 4500,
+        ], $attributes));
+    }
+
+    private function postWebhook(array $sessionObject): \Illuminate\Testing\TestResponse
+    {
+        $payload = json_encode([
+            'id' => 'evt_'.$sessionObject['id'],
+            'object' => 'event',
+            'type' => 'checkout.session.completed',
+            'data' => ['object' => $sessionObject],
+        ], JSON_THROW_ON_ERROR);
+        $timestamp = time();
+        $signature = hash_hmac('sha256', $timestamp.'.'.$payload, 'whsec_test');
+
+        return $this->call(
+            'POST',
+            route('stripe.webhook'),
+            [],
+            [],
+            [],
+            ['HTTP_STRIPE_SIGNATURE' => "t={$timestamp},v1={$signature}"],
+            $payload,
+        );
     }
 }

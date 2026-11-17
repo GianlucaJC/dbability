@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateCheckoutRequest;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -30,7 +32,11 @@ class CheckoutController extends Controller
         $isPrint = $purchaseType === 'print';
         $amountCents = $isPrint ? $product->print_price_cents : $product->price_cents;
 
-        $order = $request->user()->orders()->create([
+        $user = $request->user();
+
+        $order = Order::create([
+            'user_id' => $user?->id,
+            'customer_email' => $user?->email,
             'product_id' => $product->id,
             'purchase_type' => $purchaseType,
             'amount_cents' => $amountCents,
@@ -43,7 +49,6 @@ class CheckoutController extends Controller
             'success_url' => route('checkout.success').'?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => route('home'),
             'client_reference_id' => (string) $order->id,
-            'customer_email' => $request->user()->email,
             'metadata' => ['order_id' => (string) $order->id],
             'line_items' => [[
                 'price_data' => [
@@ -62,6 +67,10 @@ class CheckoutController extends Controller
             ]],
         ];
 
+        if ($user !== null) {
+            $sessionParameters['customer_email'] = $user->email;
+        }
+
         if ($isPrint) {
             $sessionParameters['shipping_address_collection'] = [
                 'allowed_countries' => ['IT'],
@@ -77,11 +86,18 @@ class CheckoutController extends Controller
 
     public function success(Request $request): Response
     {
+        $sessionId = $request->string('session_id')->toString();
+        $order = Order::query()
+            ->where('stripe_checkout_session_id', $sessionId)
+            ->first();
+
         return Inertia::render('CheckoutSuccess', [
-            'sessionId' => $request->string('session_id')->toString(),
-            'purchaseType' => $request->user()->orders()
-                ->where('stripe_checkout_session_id', $request->string('session_id')->toString())
-                ->value('purchase_type'),
+            'sessionId' => $sessionId,
+            'purchaseType' => $order?->purchase_type,
+            'orderStatus' => $order?->status,
+            'downloadUrl' => $order !== null && $order->status === 'paid' && $order->purchase_type === 'digital'
+                ? URL::signedRoute('orders.download', ['order' => $order->id])
+                : null,
         ]);
     }
 }

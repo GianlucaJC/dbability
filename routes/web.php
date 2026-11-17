@@ -5,6 +5,7 @@ use App\Http\Controllers\DemoDownloadController;
 use App\Http\Controllers\DemoPdfController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\MyResourcesController;
+use App\Http\Controllers\OrderDownloadController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StorefrontController;
 use App\Http\Controllers\StripeWebhookController;
@@ -28,13 +29,17 @@ Route::post('/stripe/webhook', [StripeWebhookController::class, 'handle'])
     ->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class)
     ->name('stripe.webhook');
 
+Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+Route::get('/orders/{order}/download', [OrderDownloadController::class, 'show'])
+    ->middleware('signed')
+    ->name('orders.download');
+
 Route::get('/dashboard', [MyResourcesController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
-    Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
     Route::get('/downloads/{product:slug}', [DownloadController::class, 'show'])->name('downloads.show');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
