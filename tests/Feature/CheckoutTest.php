@@ -192,8 +192,10 @@ class CheckoutTest extends TestCase
     public function test_paid_digital_webhook_for_a_guest_saves_the_email_and_sends_the_download_link(): void
     {
         Mail::fake();
+        Storage::fake('local');
+        Storage::disk('local')->put('pdfs/risorsa.pdf', '%PDF-1.4 contenuto di prova');
         config()->set('services.stripe.webhook_secret', 'whsec_test');
-        $product = $this->createFeaturedProduct();
+        $product = $this->createFeaturedProduct(['file_path' => 'pdfs/risorsa.pdf']);
         $order = Order::create([
             'user_id' => null,
             'product_id' => $product->id,
@@ -219,7 +221,9 @@ class CheckoutTest extends TestCase
             'customer_email' => 'guest@example.com',
             'user_id' => null,
         ]);
-        Mail::assertSent(OrderPaidMail::class, fn (OrderPaidMail $mail) => $mail->hasTo('guest@example.com') && $mail->order->is($order));
+        Mail::assertSent(OrderPaidMail::class, fn (OrderPaidMail $mail) => $mail->hasTo('guest@example.com')
+            && $mail->order->is($order)
+            && count($mail->attachments()) === 1);
     }
 
     public function test_a_guest_order_is_linked_to_an_existing_account_with_the_same_email(): void

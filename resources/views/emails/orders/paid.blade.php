@@ -4,7 +4,7 @@
 Abbiamo ricevuto il pagamento di **€ {{ number_format($order->amount_cents / 100, 2, ',', '.') }}** per **{{ $order->product->title }}**.
 
 @if ($order->purchase_type === 'digital')
-Puoi scaricare il tuo PDF in qualsiasi momento usando il pulsante qui sotto. Conserva questa email: il link resterà valido.
+Trovi il PDF **in allegato** a questa email. Puoi anche scaricarlo in qualsiasi momento usando il pulsante qui sotto: conserva questa email, il link resterà valido.
 
 <x-mail::button :url="$downloadUrl">
 Scarica il PDF

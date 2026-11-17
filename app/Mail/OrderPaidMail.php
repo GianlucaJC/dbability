@@ -5,9 +5,11 @@ namespace App\Mail;
 use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 
 class OrderPaidMail extends Mailable
@@ -36,5 +38,25 @@ class OrderPaidMail extends Mailable
                     : null,
             ],
         );
+    }
+
+    /**
+     * @return array<int, Attachment>
+     */
+    public function attachments(): array
+    {
+        $product = $this->order->product;
+
+        if ($this->order->purchase_type !== 'digital'
+            || blank($product?->file_path)
+            || ! Storage::disk('local')->exists($product->file_path)) {
+            return [];
+        }
+
+        return [
+            Attachment::fromStorageDisk('local', $product->file_path)
+                ->as($product->slug.'.pdf')
+                ->withMime('application/pdf'),
+        ];
     }
 }
