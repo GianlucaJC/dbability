@@ -36,6 +36,11 @@ return [
         'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
     ],
 
+    'price_override' => [
+        'digital_cents' => env('PRICE_OVERRIDE_DIGITAL_CENTS'),
+        'print_cents' => env('PRICE_OVERRIDE_PRINT_CENTS'),
+    ],
+
     'demo_checkout' => filter_var(env('DEMO_CHECKOUT', false), FILTER_VALIDATE_BOOLEAN),
 
 ];

@@ -305,6 +305,19 @@ class CheckoutTest extends TestCase
         $this->get(URL::signedRoute('orders.download', ['order' => $order->id]))->assertForbidden();
     }
 
+    public function test_env_price_override_changes_product_prices(): void
+    {
+        config()->set('services.price_override.digital_cents', 50);
+        config()->set('services.price_override.print_cents', 60);
+
+        $product = $this->createFeaturedProduct();
+
+        $this->assertSame(50, $product->price_cents);
+        $this->assertSame(60, $product->print_price_cents);
+        $this->assertSame('0,50', $product->price);
+        $this->assertSame('0,60', $product->print_price);
+    }
+
     private function createFeaturedProduct(array $attributes = []): Product
     {
         return Product::create(array_merge([

@@ -25,6 +25,21 @@ class Product extends Model
         'is_active' => 'boolean',
     ];
 
+    public function getPriceCentsAttribute(?int $value): ?int
+    {
+        // Override temporaneo del prezzo (es. collaudo pagamenti live con importi minimi).
+        $override = config('services.price_override.digital_cents');
+
+        return filled($override) ? (int) $override : $value;
+    }
+
+    public function getPrintPriceCentsAttribute(?int $value): ?int
+    {
+        $override = config('services.price_override.print_cents');
+
+        return filled($override) ? (int) $override : $value;
+    }
+
     public function getPriceAttribute(): string
     {
         return number_format($this->price_cents / 100, 2, ',', '.');
