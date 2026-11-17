@@ -62,6 +62,12 @@ class StorefrontTest extends TestCase
                 ->where('products.0.demo_download_url', route('demo.download', Product::STORE_SLUG)));
     }
 
+    public function test_legal_pages_are_available(): void
+    {
+        $this->get(route('privacy'))->assertOk();
+        $this->get(route('terms'))->assertOk();
+    }
+
     public function test_demo_pdf_is_available_without_authentication(): void
     {
         $response = $this->get(route('demo.pdf'));

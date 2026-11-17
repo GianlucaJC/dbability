@@ -212,6 +212,10 @@ function closeDemo() {
                                 <strong>€ {{ product.print_price }}</strong>
                             </button>
                         </div>
+                        <p v-if="!demoCheckout" class="mt-4 text-xs leading-5 text-[#737373]">
+                            Acquistando accetti i <Link :href="route('terms')" class="underline hover:text-[#2A2A2A]">Termini e condizioni</Link> e la <Link :href="route('privacy')" class="underline hover:text-[#2A2A2A]">Privacy Policy</Link>.
+                            Per il PDF digitale acconsenti alla fornitura immediata del contenuto e rinunci al diritto di recesso.
+                        </p>
                         </div>
                     </article>
                 </div>
@@ -323,6 +327,9 @@ function closeDemo() {
                     <template v-else> riceverai via email la conferma dell'ordine con i dati di spedizione.</template>
                 </p>
                 <p class="mt-3 leading-7 text-[#737373]">Con un account gratuito, invece, ritroverai sempre i tuoi acquisti nell'area personale.</p>
+                <p class="mt-4 text-xs leading-5 text-[#737373]">
+                    Procedendo accetti i <Link :href="route('terms')" class="underline hover:text-[#2A2A2A]">Termini e condizioni</Link> e la <Link :href="route('privacy')" class="underline hover:text-[#2A2A2A]">Privacy Policy</Link><template v-if="authPrompt.purchaseType === 'digital'">, acconsenti alla fornitura immediata del PDF e rinunci al diritto di recesso</template>.
+                </p>
                 <div class="mt-6 flex flex-col gap-3">
                     <button type="button" class="rounded-full bg-[#ea5494] px-5 py-3 font-semibold text-white hover:bg-[#c93e78]" @click="continueAsGuest">Continua senza account</button>
                     <div class="flex flex-col gap-3 sm:flex-row">
@@ -383,6 +390,12 @@ function closeDemo() {
         <footer class="bg-[#2A2A2A] py-10 text-center text-sm text-white">
             <p>DBability</p>
             <p class="mt-2 text-[#c7f5f6]">Le risorse non sostituiscono una valutazione o un trattamento professionale.</p>
+            <p class="mt-4 text-xs text-[#c7f5f6]">Dott.ssa Daniela Belli &mdash; Terapista della Riabilitazione, Albo n. 83 TNPEE<br>Via Fosso Casale 6, 65020 Villa Oliveti (PE) &mdash; P.IVA 01928510682</p>
+            <p class="mt-3 text-xs">
+                <Link :href="route('privacy')" class="text-[#01d1d6] hover:underline">Privacy Policy</Link>
+                <span class="mx-2 text-[#737373]">|</span>
+                <Link :href="route('terms')" class="text-[#01d1d6] hover:underline">Termini e condizioni</Link>
+            </p>
         </footer>
 
         <a
