@@ -18,7 +18,7 @@ La versione cartacea verrà stampata e spedita all'indirizzo indicato durante il
 {{ $order->shipping_country }}
 @endif
 
-Per qualsiasi domanda rispondi pure a questa email.
+Questa email è stata inviata da un indirizzo non presidiato: **ti preghiamo di non rispondere**. Per qualsiasi domanda scrivi a [dottoressadanielabelli@gmail.com](mailto:dottoressadanielabelli@gmail.com).
 
 Grazie,<br>
 {{ config('app.name') }}

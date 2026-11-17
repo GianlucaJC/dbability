@@ -280,8 +280,8 @@ function closeDemo() {
         <section id="dove-ricevo" class="bg-white py-16">
             <div class="mx-auto max-w-6xl px-6">
                 <p class="font-bold uppercase tracking-[0.16em] text-[#01d1d6]">Dove ricevo</p>
-                <h2 class="mt-3 text-3xl font-bold text-[#2A2A2A]">Le sedi</h2>
-                <div class="mt-8 grid gap-5 md:grid-cols-2">
+                <h2 class="mt-3 text-3xl font-bold text-[#2A2A2A]">La sede</h2>
+                <div class="mt-8 grid gap-5">
                     <article class="rounded-[1.75rem] border border-[#c7f5f6] bg-[#f7fdfe] p-6 sm:p-8">
                         <p class="text-sm font-bold uppercase tracking-wider text-[#01d1d6]">San Giovanni Teatino (CH)</p>
                         <h3 class="mt-3 text-xl font-bold text-[#2A2A2A]">Studio di Riabilitazione Neuromotoria e Logopedica</h3>
@@ -291,19 +291,6 @@ function closeDemo() {
                             target="_blank"
                             rel="noopener noreferrer"
                             class="mt-5 inline-flex items-center gap-2 font-semibold text-[#01d1d6] hover:underline"
-                        >
-                            Indicazioni stradali <span aria-hidden="true">↗</span>
-                        </a>
-                    </article>
-                    <article class="rounded-[1.75rem] border border-[#f7c7da] bg-[#fff5f9] p-6 sm:p-8">
-                        <p class="text-sm font-bold uppercase tracking-wider text-[#ea5494]">Pianella (PE)</p>
-                        <h3 class="mt-3 text-xl font-bold text-[#2A2A2A]">Studio Osteomed</h3>
-                        <p class="mt-2 leading-7 text-[#737373]">Contrada Quercia Dell’Ompiso 28</p>
-                        <a
-                            href="https://www.google.com/maps/search/?api=1&query=Contrada+Quercia+Dell%27Ompiso+28%2C+Pianella"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="mt-5 inline-flex items-center gap-2 font-semibold text-[#ea5494] hover:underline"
                         >
                             Indicazioni stradali <span aria-hidden="true">↗</span>
                         </a>
