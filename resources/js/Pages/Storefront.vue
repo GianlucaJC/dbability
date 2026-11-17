@@ -140,51 +140,6 @@ function closeDemo() {
             </div>
         </section>
 
-        <section id="profilo" class="bg-[#f7fdfe] py-20">
-            <div class="mx-auto grid max-w-6xl items-center gap-12 px-6 md:grid-cols-[0.85fr_1.15fr]">
-                <figure class="relative mx-auto w-full max-w-sm">
-                    <div class="absolute -left-4 -top-4 h-24 w-24 rounded-full bg-[#c7f5f6]"></div>
-                    <img
-                        src="/images/daniela-belli.jpg"
-                        alt="La Dott.ssa Daniela Belli nel suo studio"
-                        class="relative aspect-[4/5] w-full rounded-[2rem] object-cover object-center shadow-xl ring-8 ring-white"
-                        loading="lazy"
-                    />
-                    <figcaption class="absolute inset-x-4 bottom-4 rounded-2xl bg-white/95 p-4 shadow-lg backdrop-blur">
-                        <p class="font-bold text-[#2A2A2A]">Dott.ssa Daniela Belli</p>
-                        <p class="mt-1 text-sm leading-5 text-[#737373]">Terapista della Neuro e Psicomotricità dell’età evolutiva</p>
-                    </figcaption>
-                </figure>
-
-                <div>
-                    <p class="font-bold uppercase tracking-[0.16em] text-[#01d1d6]">Chi sono</p>
-                    <h2 class="mt-3 text-3xl font-bold text-[#2A2A2A] md:text-4xl">Esperienza e formazione al servizio della crescita</h2>
-                    <p class="mt-4 text-lg leading-8 text-[#737373]">
-                        Daniela Belli è Terapista della Neuro e Psicomotricità dell’età evolutiva. Accompagna bambini e famiglie con percorsi e attività pensati per sostenere lo sviluppo e l’autonomia.
-                    </p>
-
-                    <div class="mt-8 rounded-[1.75rem] border border-[#c7f5f6] bg-white p-6 shadow-sm sm:p-8">
-                        <h3 class="text-xl font-bold text-[#2A2A2A]">Formazione e specializzazioni</h3>
-                        <ul class="mt-5 space-y-3 text-sm leading-6 text-[#5F5F5F] sm:text-base">
-                            <li class="flex gap-3"><span class="font-bold text-[#01d1d6]">✓</span><span>Laurea in Terapia della Neuropsicomotricità dell’età evolutiva presso l’Università Cattolica del Sacro Cuore di Roma.</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-[#01d1d6]">✓</span><span>Master certificato CENAF in Psicomotricità Funzionale.</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-[#01d1d6]">✓</span><span>Certificazione in Terapia Manuale Osteopatica Neonatale e Pediatrica.</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-[#01d1d6]">✓</span><span>Formazione nei metodi Sabbadini, Feuerstein, NEURAC, ARM, Benso, Amorosi e Ambrosini.</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-[#01d1d6]">✓</span><span>Certificazione in Rieducazione Posturale Globale con Metodo Mézières.</span></li>
-                        </ul>
-                        <a
-                            href="https://www.danielabelli.it/chi_sono.php?i=2"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="mt-7 inline-flex items-center gap-2 rounded-full bg-[#ea5494] px-5 py-3 font-semibold text-white shadow-sm transition hover:bg-[#c93e78]"
-                        >
-                            Scopri il curriculum completo <span aria-hidden="true">↗</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="risorse" class="bg-white py-20">
             <div class="mx-auto max-w-6xl px-6">
                 <div class="max-w-2xl">
@@ -232,6 +187,51 @@ function closeDemo() {
                     <span class="rounded-full bg-white/15 px-4 py-2">Download immediato</span>
                     <span class="rounded-full bg-white/15 px-4 py-2">Stampa e spedizione incluse in Italia</span>
                     <span class="rounded-full bg-white/15 px-4 py-2">Pagamento sicuro</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="profilo" class="bg-[#f7fdfe] py-20">
+            <div class="mx-auto grid max-w-6xl items-center gap-12 px-6 md:grid-cols-[0.85fr_1.15fr]">
+                <figure class="relative mx-auto w-full max-w-sm">
+                    <div class="absolute -left-4 -top-4 h-24 w-24 rounded-full bg-[#c7f5f6]"></div>
+                    <img
+                        src="/images/daniela-belli.jpg"
+                        alt="La Dott.ssa Daniela Belli nel suo studio"
+                        class="relative aspect-[4/5] w-full rounded-[2rem] object-cover object-center shadow-xl ring-8 ring-white"
+                        loading="lazy"
+                    />
+                    <figcaption class="absolute inset-x-4 bottom-4 rounded-2xl bg-white/95 p-4 shadow-lg backdrop-blur">
+                        <p class="font-bold text-[#2A2A2A]">Dott.ssa Daniela Belli</p>
+                        <p class="mt-1 text-sm leading-5 text-[#737373]">Terapista della Neuro e Psicomotricità dell’età evolutiva</p>
+                    </figcaption>
+                </figure>
+
+                <div>
+                    <p class="font-bold uppercase tracking-[0.16em] text-[#01d1d6]">Chi sono</p>
+                    <h2 class="mt-3 text-3xl font-bold text-[#2A2A2A] md:text-4xl">Esperienza e formazione al servizio della crescita</h2>
+                    <p class="mt-4 text-lg leading-8 text-[#737373]">
+                        Daniela Belli è Terapista della Neuro e Psicomotricità dell’età evolutiva. Accompagna bambini e famiglie con percorsi e attività pensati per sostenere lo sviluppo e l’autonomia.
+                    </p>
+
+                    <div class="mt-8 rounded-[1.75rem] border border-[#c7f5f6] bg-white p-6 shadow-sm sm:p-8">
+                        <h3 class="text-xl font-bold text-[#2A2A2A]">Formazione e specializzazioni</h3>
+                        <ul class="mt-5 space-y-3 text-sm leading-6 text-[#5F5F5F] sm:text-base">
+                            <li class="flex gap-3"><span class="font-bold text-[#01d1d6]">✓</span><span>Laurea in Terapia della Neuropsicomotricità dell’età evolutiva presso l’Università Cattolica del Sacro Cuore di Roma.</span></li>
+                            <li class="flex gap-3"><span class="font-bold text-[#01d1d6]">✓</span><span>Master certificato CENAF in Psicomotricità Funzionale.</span></li>
+                            <li class="flex gap-3"><span class="font-bold text-[#01d1d6]">✓</span><span>Certificazione in Terapia Manuale Osteopatica Neonatale e Pediatrica.</span></li>
+                            <li class="flex gap-3"><span class="font-bold text-[#01d1d6]">✓</span><span>Formazione nei metodi Sabbadini, Feuerstein, NEURAC, ARM, Benso, Amorosi e Ambrosini.</span></li>
+                            <li class="flex gap-3"><span class="font-bold text-[#01d1d6]">✓</span><span>Certificazione in Rieducazione Posturale Globale con Metodo Mézières.</span></li>
+                        </ul>
+                        <a
+                            href="https://www.danielabelli.it/chi_sono.php?i=2"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="mt-7 inline-flex items-center gap-2 rounded-full bg-[#ea5494] px-5 py-3 font-semibold text-white shadow-sm transition hover:bg-[#c93e78]"
+                        >
+                            Scopri il curriculum completo <span aria-hidden="true">↗</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
